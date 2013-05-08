@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <constant name="struts.multipart.saveDir" value="D:\\temp"></constant>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+
+	<package name="fileUpLoad" namespace="/" extends="struts-default">
+		<action name="upload" class="action.UploadUtilAction" method="uploadFile"/>
+		
+		<action name="export" class="action.export.ExportExcelAction" method="export">
+			<result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="inputName">excelFile</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">4096</param>
+			</result>
+		</action>
+	</package>
+	<!-- Add packages here -->
+
+</struts>
